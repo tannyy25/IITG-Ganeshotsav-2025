@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin — Ganeshotsav IITG</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --accent: #FF6B1A;
+      --accent-dim: rgba(255,107,26,0.12);
+      --bg: #0a0400;
+      --bg2: #110800;
+      --bg3: #1a0e00;
+      --text: #f5ede0;
+      --muted: rgba(245,237,224,0.5);
+      --dim: rgba(245,237,224,0.15);
+      --border: rgba(255,107,26,0.15);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; min-height:100vh; }
+
+    /* LOGIN PAGE */
+    #login-page {
+      min-height:100vh; display:flex; align-items:center; justify-content:center;
+      background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(255,107,26,0.08) 0%, transparent 70%);
+    }
+    .login-card {
+      background:var(--bg2); border:1px solid var(--border); border-radius:8px;
+      padding:2.5rem; width:100%; max-width:380px;
+    }
+    .login-card h1 { font-family:'Bebas Neue'; font-size:2rem; color:var(--accent); letter-spacing:0.1em; margin-bottom:0.3rem; }
+    .login-card p  { color:var(--muted); font-size:0.82rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:2rem; }
+    .form-group { margin-bottom:1.2rem; }
+    .form-group label { display:block; font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:0.5rem; }
+    .form-group input {
+      width:100%; background:var(--bg3); border:1px solid var(--border); color:var(--text);
+      padding:0.75rem 1rem; border-radius:4px; font-size:0.9rem; font-family:inherit;
+      transition:border-color 0.2s; outline:none;
+    }
+    .form-group input:focus { border-color:var(--accent); }
+    .btn-login {
+      width:100%; background:var(--accent); color:#000; border:none; padding:0.85rem;
+      font-size:0.78rem; letter-spacing:0.18em; text-transform:uppercase; font-family:inherit;
+      font-weight:600; border-radius:4px; cursor:pointer; transition:opacity 0.2s;
+    }
+    .btn-login:hover { opacity:0.88; }
+    .login-error { color:#ff6b6b; font-size:0.8rem; margin-top:0.8rem; text-align:center; display:none; }
+
+    /* DASHBOARD */
+    #dashboard { display:none; }
+
+    .topbar {
+      background:var(--bg2); border-bottom:1px solid var(--border);
+      padding:1rem 2rem; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:50;
+    }
+    .topbar-logo { font-family:'Bebas Neue'; font-size:1.4rem; color:var(--accent); letter-spacing:0.1em; }
+    .topbar-right { display:flex; align-items:center; gap:1.2rem; }
+    .topbar-right span { font-size:0.78rem; color:var(--muted); }
+    .btn-logout {
+      background:transparent; border:1px solid var(--border); color:var(--muted);
+      padding:0.4rem 1rem; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase;
+      font-family:inherit; cursor:pointer; border-radius:3px; transition:border-color 0.2s, color 0.2s;
+    }
+    .btn-logout:hover { border-color:var(--accent); color:var(--accent); }
+
+    .main { padding:2rem; max-width:1300px; margin:0 auto; }
+
+    /* STATS CARDS */
+    .stats-grid {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; margin-bottom:2rem;
+    }
+    .stat-card {
+      background:var(--bg2); border:1px solid var(--border); border-radius:6px; padding:1.5rem;
+      transition:border-color 0.2s;
+    }
+    .stat-card:hover { border-color:rgba(255,107,26,0.4); }
+    .stat-card .label { font-size:0.68rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--muted); margin-bottom:0.6rem; }
+    .stat-card .value { font-family:'Bebas Neue'; font-size:3rem; color:var(--accent); line-height:1; }
+    .stat-card .sub   { font-size:0.78rem; color:var(--dim); margin-top:0.4rem; }
+
+    /* FILTER BAR */
+    .filter-bar {
+      display:flex; align-items:center; gap:1rem; margin-bottom:1.5rem; flex-wrap:wrap;
+    }
+    .filter-bar h2 { font-family:'Bebas Neue'; font-size:1.8rem; color:var(--text); margin-right:auto; }
+    .filter-btn {
+      background:transparent; border:1px solid var(--border); color:var(--muted);
+      padding:0.45rem 1rem; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;
+      font-family:inherit; cursor:pointer; border-radius:3px; transition:all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active { border-color:var(--accent); color:var(--accent); background:var(--accent-dim); }
+    .search-input {
+      background:var(--bg3); border:1px solid var(--border); color:var(--text);
+      padding:0.45rem 0.9rem; border-radius:3px; font-size:0.82rem; font-family:inherit;
+      outline:none; transition:border-color 0.2s; width:200px;
+    }
+    .search-input:focus { border-color:var(--accent); }
+
+    /* TABLE */
+    .table-wrap { background:var(--bg2); border:1px solid var(--border); border-radius:6px; overflow:hidden; }
+    table { width:100%; border-collapse:collapse; }
+    thead th {
+      text-align:left; padding:0.9rem 1.2rem; font-size:0.65rem; letter-spacing:0.2em;
+      text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--border);
+      background:var(--bg3);
+    }
+    tbody tr { border-bottom:1px solid rgba(255,107,26,0.06); transition:background 0.15s; }
+    tbody tr:last-child { border-bottom:none; }
+    tbody tr:hover { background:rgba(255,107,26,0.04); }
+    tbody td { padding:0.9rem 1.2rem; font-size:0.85rem; color:var(--text); }
+    .badge {
+      display:inline-block; padding:0.2rem 0.6rem; border-radius:20px; font-size:0.68rem;
+      font-weight:600; letter-spacing:0.08em; text-transform:uppercase;
+    }
+    .badge-order    { background:rgba(255,107,26,0.15); color:#FF6B1A; }
+    .badge-donation { background:rgba(212,168,67,0.15); color:#d4a843; }
+    .badge-success  { background:rgba(80,200,120,0.15); color:#50c878; }
+    .badge-pending  { background:rgba(255,200,0,0.15); color:#ffc800; }
+    .badge-failed   { background:rgba(255,80,80,0.15); color:#ff5050; }
+
+    /* PAGINATION */
+    .pagination { display:flex; align-items:center; justify-content:flex-end; gap:0.6rem; margin-top:1.2rem; }
+    .page-btn {
+      background:var(--bg2); border:1px solid var(--border); color:var(--muted);
+      padding:0.4rem 0.8rem; font-size:0.75rem; font-family:inherit; cursor:pointer;
+      border-radius:3px; transition:all 0.2s;
+    }
+    .page-btn:hover:not(:disabled), .page-btn.current { border-color:var(--accent); color:var(--accent); }
+    .page-btn:disabled { opacity:0.35; cursor:default; }
+    .page-info { font-size:0.75rem; color:var(--muted); }
+
+    /* LOADING / EMPTY */
+    .loading { text-align:center; padding:3rem; color:var(--muted); font-size:0.85rem; letter-spacing:0.1em; }
+    .empty   { text-align:center; padding:3rem; color:var(--dim); }
+
+    @media (max-width:768px) {
+      .stats-grid { grid-template-columns:1fr 1fr; }
+      .main { padding:1rem; }
+      table { font-size:0.78rem; }
+      thead th, tbody td { padding:0.7rem 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ LOGIN ══════════════ -->
+<div id="login-page">
+  <div class="login-card">
+    <h1>Admin</h1>
+    <p>Ganeshotsav IITG · 2025</p>
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" id="login-username" placeholder="admin" autocomplete="username" />
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password" />
+    </div>
+    <button class="btn-login" id="btn-login">Sign In</button>
+    <div class="login-error" id="login-error">Invalid credentials. Try again.</div>
+  </div>
+</div>
+
+<!-- ══════════════ DASHBOARD ══════════════ -->
+<div id="dashboard">
+
+  <div class="topbar">
+    <div class="topbar-logo">Ganeshotsav Admin</div>
+    <div class="topbar-right">
+      <span id="admin-name"></span>
+      <button class="btn-logout" id="btn-logout">Logout</button>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- Stats -->
+    <div class="stats-grid" id="stats-grid">
+      <div class="stat-card"><div class="label">Total Revenue</div><div class="value" id="s-revenue">—</div><div class="sub">All successful transactions</div></div>
+      <div class="stat-card"><div class="label">Merch Orders</div><div class="value" id="s-orders">—</div><div class="sub" id="s-order-rev">₹0 collected</div></div>
+      <div class="stat-card"><div class="label">Donations</div><div class="value" id="s-donations">—</div><div class="sub" id="s-donation-rev">₹0 collected</div></div>
+    </div>
+
+    <!-- Transactions table -->
+    <div class="filter-bar">
+      <h2>Transactions</h2>
+      <input class="search-input" id="search-input" type="text" placeholder="Search name / roll no…" />
+      <button class="filter-btn active" data-filter="ALL">All</button>
+      <button class="filter-btn" data-filter="ORDER">Orders</button>
+      <button class="filter-btn" data-filter="DONATION">Donations</button>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Roll No.</th>
+            <th>Type</th>
+            <th>Item</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody id="tx-body">
+          <tr><td colspan="8" class="loading">Loading transactions…</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination" id="pagination"></div>
+
+  </div>
+</div>
+
+<script>
+  // ── Config ─────────────────────────────────────────────
+  // Change this to your deployed backend URL
+  const API_BASE = 'http://localhost:5001/api';
+
+  // ── State ──────────────────────────────────────────────
+  let token = localStorage.getItem('gf_admin_token') || null;
+  let currentPage = 1;
+  let currentFilter = 'ALL';
+  let searchQuery = '';
+  let searchTimeout = null;
+
+  // ── Init ───────────────────────────────────────────────
+  if (token) showDashboard();
+
+  // ── Login ──────────────────────────────────────────────
+  document.getElementById('btn-login').addEventListener('click', login);
+  document.getElementById('login-password').addEventListener('keydown', e => {
+    if (e.key === 'Enter') login();
+  });
+
+  async function login() {
+    const username = document.getElementById('login-username').value.trim();
+    const password = document.getElementById('login-password').value;
+    const errEl = document.getElementById('login-error');
+    errEl.style.display = 'none';
+
+    if (!username || !password) {
+      errEl.textContent = 'Please enter username and password.';
+      errEl.style.display = 'block';
+      return;
+    }
+
+    try {
+      const res = await fetch(`${API_BASE}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        token = data.token;
+        localStorage.setItem('gf_admin_token', token);
+        showDashboard();
+      } else {
+        errEl.textContent = data.message || 'Invalid credentials.';
+        errEl.style.display = 'block';
+      }
+    } catch {
+      errEl.textContent = 'Cannot connect to server.';
+      errEl.style.display = 'block';
+    }
+  }
+
+  // ── Logout ─────────────────────────────────────────────
+  document.getElementById('btn-logout').addEventListener('click', () => {
+    token = null;
+    localStorage.removeItem('gf_admin_token');
+    document.getElementById('dashboard').style.display = 'none';
+    document.getElementById('login-page').style.display = 'flex';
+  });
+
+  // ── Show Dashboard ─────────────────────────────────────
+  function showDashboard() {
+    document.getElementById('login-page').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    document.getElementById('admin-name').textContent = payload.username;
+    loadStats();
+    loadTransactions();
+  }
+
+  // ── Load Stats ─────────────────────────────────────────
+  async function loadStats() {
+    try {
+      const res = await fetch(`${API_BASE}/transactions/stats`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (res.status === 401) { logout(); return; }
+      const { data } = await res.json();
+
+      document.getElementById('s-revenue').textContent   = `₹${data.totalRevenue.toLocaleString('en-IN')}`;
+      document.getElementById('s-orders').textContent    = data.orderCount;
+      document.getElementById('s-donations').textContent = data.donationCount;
+      document.getElementById('s-order-rev').textContent    = `₹${data.orderRevenue.toLocaleString('en-IN')} collected`;
+      document.getElementById('s-donation-rev').textContent = `₹${data.donationRevenue.toLocaleString('en-IN')} collected`;
+    } catch {
+      console.error('Failed to load stats');
+    }
+  }
+
+  // ── Load Transactions ──────────────────────────────────
+  async function loadTransactions() {
+    const tbody = document.getElementById('tx-body');
+    tbody.innerHTML = '<tr><td colspan="8" class="loading">Loading…</td></tr>';
+
+    let url = `${API_BASE}/transactions?page=${currentPage}&limit=15`;
+    if (currentFilter !== 'ALL') url += `&type=${currentFilter}`;
+
+    try {
+      const res = await fetch(url, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (res.status === 401) { logout(); return; }
+      const { data, pagination } = await res.json();
+
+      // Client-side search filter
+      const filtered = searchQuery
+        ? data.filter(t =>
+            t.name.toLowerCase().includes(searchQuery) ||
+            t.rollNumber.toLowerCase().includes(searchQuery)
+          )
+        : data;
+
+      if (!filtered.length) {
+        tbody.innerHTML = '<tr><td colspan="8" class="empty">No transactions found.</td></tr>';
+        renderPagination(pagination);
+        return;
+      }
+
+      tbody.innerHTML = filtered.map((t, i) => `
+        <tr>
+          <td style="color:var(--dim)">${(currentPage - 1) * 15 + i + 1}</td>
+          <td><strong>${escHtml(t.name)}</strong></td>
+          <td style="font-family:monospace;font-size:0.8rem">${escHtml(t.rollNumber)}</td>
+          <td><span class="badge ${t.type === 'ORDER' ? 'badge-order' : 'badge-donation'}">${t.type}</span></td>
+          <td style="color:var(--muted);font-size:0.8rem">${escHtml(t.itemDetails)}</td>
+          <td><strong style="color:var(--accent)">₹${t.amount.toLocaleString('en-IN')}</strong></td>
+          <td><span class="badge badge-${t.paymentStatus.toLowerCase()}">${t.paymentStatus}</span></td>
+          <td style="color:var(--muted);font-size:0.78rem">${formatDate(t.createdAt)}</td>
+        </tr>
+      `).join('');
+
+      renderPagination(pagination);
+    } catch {
+      tbody.innerHTML = '<tr><td colspan="8" class="empty">Failed to load. Check server.</td></tr>';
+    }
+  }
+
+  // ── Pagination ─────────────────────────────────────────
+  function renderPagination({ total, page, pages }) {
+    const el = document.getElementById('pagination');
+    if (pages <= 1) { el.innerHTML = ''; return; }
+
+    el.innerHTML = `
+      <span class="page-info">${total} total</span>
+      <button class="page-btn" onclick="goPage(${page - 1})" ${page <= 1 ? 'disabled' : ''}>← Prev</button>
+      ${Array.from({length: pages}, (_, i) => i + 1)
+        .filter(p => p === 1 || p === pages || Math.abs(p - page) <= 1)
+        .map(p => `<button class="page-btn ${p === page ? 'current' : ''}" onclick="goPage(${p})">${p}</button>`)
+        .join('')}
+      <button class="page-btn" onclick="goPage(${page + 1})" ${page >= pages ? 'disabled' : ''}>Next →</button>
+    `;
+  }
+
+  function goPage(p) {
+    currentPage = p;
+    loadTransactions();
+  }
+
+  // ── Filter buttons ─────────────────────────────────────
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFilter = btn.dataset.filter;
+      currentPage = 1;
+      loadTransactions();
+    });
+  });
+
+  // ── Search ─────────────────────────────────────────────
+  document.getElementById('search-input').addEventListener('input', e => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+      searchQuery = e.target.value.trim().toLowerCase();
+      currentPage = 1;
+      loadTransactions();
+    }, 350);
+  });
+
+  // ── Helpers ────────────────────────────────────────────
+  function formatDate(iso) {
+    return new Date(iso).toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' });
+  }
+  function escHtml(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+</script>
+</body>
+</html>

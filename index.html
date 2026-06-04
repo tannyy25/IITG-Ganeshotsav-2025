@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ganeshotsav — IIT Guwahati</title>
+  <meta name="description" content="Ganeshotsav at IIT Guwahati — Four days of devotion, culture and unforgettable memories." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-logo">
+      <img src="images/logo.png" class="nav-logo-img" alt="Logo" onerror="this.style.display='none'" />
+      <span class="nav-logo-text" id="nav-logo-text">IITG Ganeshotsav</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#merch">Merch</a></li>
+      <li><a href="#team">Organizing Team</a></li>
+    </ul>
+    <a href="#events" class="nav-cta">View Schedule</a>
+  </nav>
+
+ <section id="hero">
+    <div class="hero-visual-area">
+      <div class="hero-overlay"></div>
+      <div class="hero-lines"></div>
+      
+      <canvas id="hero-canvas"></canvas>
+      
+      <div class="scroll-hint">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </div>
+
+    <div class="hero-text-block">
+      <div class="hero-overline" id="hero-overline">IIT Guwahati Presents</div>
+      <h1 class="hero-title">
+        <span id="hero-name-text">Ganeshotsav</span>
+        <span id="hero-year" style="color:var(--accent)">2025</span>
+      </h1>
+      <div class="hero-dates-row">
+        <span id="hero-dates">27 – 31 August</span>
+      </div>
+      <p class="hero-desc" id="hero-desc">
+        India's most celebrated festival, alive at IIT Guwahati.
+        Five days of devotion, culture, and unforgettable memories.
+      </p>
+      <a href="#events" class="hero-btn" id="hero-cta">
+        Explore the Festivities
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <div id="stats">
+    <div class="stats-inner">
+      <div class="stat-item reveal">
+        <span class="stat-val">10,000+</span>
+        <span class="stat-lbl">Devotees</span>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-val">5</span>
+        <span class="stat-lbl">Days</span>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-val">10+</span>
+        <span class="stat-lbl">Events</span>
+      </div>
+      <div class="stat-item reveal">
+        <span class="stat-val">2025</span>
+        <span class="stat-lbl">Edition</span>
+      </div>
+    </div>
+  </div>
+
+  <section id="about">
+    <div class="section-wrap">
+      <div class="about-text reveal">
+        <div class="section-label">The Festival</div>
+        <div class="section-divider"></div>
+        <div class="about-highlight" id="about-highlight">Five days. One spirit.</div>
+        <p class="about-body" id="about-body">
+          Ganeshotsav at IIT Guwahati is more than a celebration — it is a living tradition
+          that unites students, faculty, and the community in devotion and joy. Every year we
+          welcome Lord Ganesha with grandeur, music, and a spirit that transforms the entire campus.
+        </p>
+      </div>
+      <div class="about-visual reveal">
+        <img class="about-img-main" src="images/about.jpg" alt="Celebration"
+             onerror="this.style.background='rgba(255,107,26,0.06)';this.removeAttribute('src')" />
+        <div class="about-tag">Est. IITG</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="events">
+    <div class="section-wrap">
+      <div class="reveal">
+        <div class="section-label">Schedule</div>
+        <h2 class="section-title">The Five Days</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="events-grid">
+        <div class="event-card reveal">
+          <div class="event-day">Day 01</div>
+          <div class="event-date">Aug 27</div>
+          <div class="event-title">Arrival</div>
+          <div class="event-desc">Grand installation ceremony with prayers and rituals.</div>
+        </div>
+        <div class="event-card reveal">
+          <div class="event-day">Day 02</div>
+          <div class="event-date">Aug 28</div>
+          <div class="event-title">Cultural Night</div>
+          <div class="event-desc">Music and dance performances by students and guests.</div>
+        </div>
+        <div class="event-card reveal">
+          <div class="event-day">Day 03</div>
+          <div class="event-date">Aug 29</div>
+          <div class="event-title">Mahaprasad</div>
+          <div class="event-desc">Delicious tradational style authentic Prasad filled with bappas blessings.</div>
+        </div>
+        <div class="event-card reveal">
+          <div class="event-day">Day 04</div>
+          <div class="event-date">Aug 30</div>
+          <div class="event-title">Health checkup & Rangoli competition</div>
+          <div class="event-desc">Health checkup for all devotees followed by Atharvashirsh Pathan.</div>
+        </div>
+        <div class="event-card reveal">
+          <div class="event-day">Day 05</div>
+          <div class="event-date">Aug 31</div>
+          <div class="event-title">Visarjan</div>
+          <div class="event-desc">Emotional farewell procession across campus.</div>
+        </div>
+        <!-- Your existing events-grid ends right here -->
+      </div>
+
+      <!-- ===================== SCHEDULE LOGISTICS FOOTER ===================== -->
+      <div class="schedule-logistics-bar reveal">
+        
+        <!-- Venue Location Block -->
+        <div class="logistics-venue">
+          <div class="venue-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <div class="venue-text">
+            Manas Community Hall,<br>
+            <span>IIT Guwahati Campus</span>
+          </div>
+        </div>
+
+        <!-- Timings Badges Group -->
+        <div class="logistics-timings">
+          
+          <!-- Morning Badge -->
+          <div class="aarti-badge morning">
+            <span class="badge-label">Aarti Timings -</span>
+            <span class="badge-time">Morning - 08:30 AM</span>
+          </div>
+
+          <!-- Evening Badge -->
+          <div class="aarti-badge evening">
+            <span class="badge-label">Aarti Timings -</span>
+            <span class="badge-time">Evening - 07:30 PM</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div> <!-- Closes .section-wrap -->
+  </section>
+
+ <section id="gallery">
+    <div class="gallery-stack-container">
+      
+      <div class="gallery-header reveal">
+        <div class="section-label">Memories</div>
+        <h2 class="section-title">Moments</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="moment-row-wrapper" data-dir="left">
+        <div class="moment-row-title">Sthapana</div>
+        <div class="marquee-container">
+          <div class="moment-strip moments-marquee-track">
+            <div class="marquee-group">
+              <div class="moment-card"><img src="images/Sthapana1.jpg" alt="Sthapana 1"></div>
+              <div class="moment-card"><img src="images/Sthapana2.jpg" alt="Sthapana 2"></div>
+              <div class="moment-card"><img src="images/Sthapana3.jpg" alt="Sthapana 3"></div>
+              <div class="moment-card"><img src="images/Sthapana4.jpg" alt="Sthapana 4"></div>
+              <div class="moment-card"><img src="images/Sthapana5.jpg" alt="Sthapana 5"></div>
+              <div class="moment-card"><img src="images/Sthapana6.jpg" alt="Sthapana 6"></div>
+            </div>
+            <div class="marquee-group" aria-hidden="true">
+              <div class="moment-card"><img src="images/Sthapana1.jpg" alt="Sthapana 1"></div>
+              <div class="moment-card"><img src="images/Sthapana2.jpg" alt="Sthapana 2"></div>
+              <div class="moment-card"><img src="images/Sthapana3.jpg" alt="Sthapana 3"></div>
+              <div class="moment-card"><img src="images/Sthapana4.jpg" alt="Sthapana 4"></div>
+              <div class="moment-card"><img src="images/Sthapana5.jpg" alt="Sthapana 5"></div>
+              <div class="moment-card"><img src="images/Sthapana6.jpg" alt="Sthapana 6"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="moment-row-wrapper" data-dir="right">
+        <div class="moment-row-title">Cultural Night</div>
+        <div class="marquee-container">
+          <div class="moment-strip moments-marquee-track">
+            <div class="marquee-group">
+              <div class="moment-card"><img src="images/Cultural1.jpg" alt="Cultural 1"></div>
+              <div class="moment-card"><img src="images/Cultural2.jpg" alt="Cultural 2"></div>
+              <div class="moment-card"><img src="images/Cultural3.jpg" alt="Cultural 3"></div>
+              <div class="moment-card"><img src="images/Cultural4.jpg" alt="Cultural 4"></div>
+              <div class="moment-card"><img src="images/Cultural5.jpg" alt="Cultural 5"></div>
+              <div class="moment-card"><img src="images/Cultural6.jpg" alt="Cultural 6"></div>
+            </div>
+            <div class="marquee-group" aria-hidden="true">
+              <div class="moment-card"><img src="images/Cultural1.jpg" alt="Cultural 1"></div>
+              <div class="moment-card"><img src="images/Cultural2.jpg" alt="Cultural 2"></div>
+              <div class="moment-card"><img src="images/Cultural3.jpg" alt="Cultural 3"></div>
+              <div class="moment-card"><img src="images/Cultural4.jpg" alt="Cultural 4"></div>
+              <div class="moment-card"><img src="images/Cultural5.jpg" alt="Cultural 5"></div>
+              <div class="moment-card"><img src="images/Cultural6.jpg" alt="Cultural 6"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="moment-row-wrapper" data-dir="left">
+        <div class="moment-row-title">Mahaprasad</div>
+        <div class="marquee-container">
+          <div class="moment-strip moments-marquee-track">
+            <div class="marquee-group">
+              <div class="moment-card"><img src="images/Mahaprasad1.jpg" alt="Prasad 1"></div>
+              <div class="moment-card"><img src="images/Mahaprasad2.jpg" alt="Prasad 2"></div>
+              <div class="moment-card"><img src="images/Mahaprasad3.jpg" alt="Prasad 3"></div>
+              <div class="moment-card"><img src="images/Mahaprasad4.jpg" alt="Prasad 4"></div>
+              <div class="moment-card"><img src="images/Mahaprasad5.jpg" alt="Prasad 5"></div>
+              <div class="moment-card"><img src="images/Mahaprasad6.jpg" alt="Prasad 6"></div>
+            </div>
+            <div class="marquee-group" aria-hidden="true">
+              <div class="moment-card"><img src="images/Mahaprasad1.jpg" alt="Prasad 1"></div>
+              <div class="moment-card"><img src="images/Mahaprasad2.jpg" alt="Prasad 2"></div>
+              <div class="moment-card"><img src="images/Mahaprasad3.jpg" alt="Prasad 3"></div>
+              <div class="moment-card"><img src="images/Mahaprasad4.jpg" alt="Prasad 4"></div>
+              <div class="moment-card"><img src="images/Mahaprasad5.jpg" alt="Prasad 5"></div>
+              <div class="moment-card"><img src="images/Mahaprasad6.jpg" alt="Prasad 6"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="moment-row-wrapper" data-dir="right">
+        <div class="moment-row-title">Competitions & Health checkup</div>
+        <div class="marquee-container">
+          <div class="moment-strip moments-marquee-track">
+            <div class="marquee-group">
+              <div class="moment-card"><img src="images/Competitions1.jpg" alt="Event 1"></div>
+              <div class="moment-card"><img src="images/Competitions2.jpg" alt="Event 2"></div>
+              <div class="moment-card"><img src="images/Competitions3.jpg" alt="Event 3"></div>
+              <div class="moment-card"><img src="images/Competitions4.jpg" alt="Event 4"></div>
+              <div class="moment-card"><img src="images/Competitions5.jpg" alt="Event 5"></div>
+              <div class="moment-card"><img src="images/Competitions6.jpg" alt="Event 6"></div>
+            </div>
+            <div class="marquee-group" aria-hidden="true">
+              <div class="moment-card"><img src="images/Competitions1.jpg" alt="Event 1"></div>
+              <div class="moment-card"><img src="images/Competitions2.jpg" alt="Event 2"></div>
+              <div class="moment-card"><img src="images/Competitions3.jpg" alt="Event 3"></div>
+              <div class="moment-card"><img src="images/Competitions4.jpg" alt="Event 4"></div>
+              <div class="moment-card"><img src="images/Competitions5.jpg" alt="Event 5"></div>
+              <div class="moment-card"><img src="images/Competitions6.jpg" alt="Event 6"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="moment-row-wrapper" data-dir="left">
+        <div class="moment-row-title">Visarjan</div>
+        <div class="marquee-container">
+          <div class="moment-strip moments-marquee-track">
+            <div class="marquee-group">
+              <div class="moment-card"><img src="images/Visarjan1.jpg" alt="Visarjan 1"></div>
+              <div class="moment-card"><img src="images/Visarjan2.jpg" alt="Visarjan 2"></div>
+              <div class="moment-card"><img src="images/Visarjan3.jpg" alt="Visarjan 3"></div>
+              <div class="moment-card"><img src="images/Visarjan4.jpg" alt="Visarjan 4"></div>
+              <div class="moment-card"><img src="images/Visarjan5.jpg" alt="Visarjan 5"></div>
+              <div class="moment-card"><img src="images/Visarjan6.jpg" alt="Visarjan 6"></div>
+            </div>
+            <div class="marquee-group" aria-hidden="true">
+              <div class="moment-card"><img src="images/Visarjan1.jpg" alt="Visarjan 1"></div>
+              <div class="moment-card"><img src="images/Visarjan2.jpg" alt="Visarjan 2"></div>
+              <div class="moment-card"><img src="images/Visarjan3.jpg" alt="Visarjan 3"></div>
+              <div class="moment-card"><img src="images/Visarjan4.jpg" alt="Visarjan 4"></div>
+              <div class="moment-card"><img src="images/Visarjan5.jpg" alt="Visarjan 5"></div>
+              <div class="moment-card"><img src="images/Visarjan6.jpg" alt="Visarjan 6"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  
+  
+
+ <!-- ===================== MERCHANDISE SECTION ===================== -->
+  <section id="merch">
+    <div class="section-wrap">
+      
+      <div class="reveal">
+        <div class="section-label">Exclusive</div>
+        <h2 class="section-title">Festival Merch</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="merch-grid">
+
+        
+        
+        
+        <div class="merch-card reveal">
+          <div class="merch-image-wrapper">
+            <img src="images/oversizedtee.jpg" alt="Official Festival Oversized T-Shirt" onerror="this.parentNode.innerHTML='<div class=merch-placeholder>Oversized Tee Image</div>'" />
+          </div>
+          <div class="merch-meta">
+            <h3 class="merch-name">Official Festival Oversized T-Shirt</h3>
+            <p class="merch-desc">Limited edition oversized cotton tee featuring exclusive, custom-designed graphic festival artwork.</p>
+            <div class="merch-footer">
+              <span class="merch-price">₹499</span>
+              <button class="merch-btn portal-ripple-btn"
+                onclick="openMerchModal('Official Festival Oversized T-Shirt', 499)">
+                <span class="btn-text">Order</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="merch-card reveal">
+          <div class="merch-image-wrapper">
+            <img src="images/normaltee.jpg" alt="Official Festival Normal T-Shirt" onerror="this.parentNode.innerHTML='<div class=merch-placeholder>Normal Tee Image</div>'" />
+          </div>
+          <div class="merch-meta">
+            <h3 class="merch-name">Official Festival Normal T-Shirt</h3>
+            <p class="merch-desc">Limited edition heavyweight cotton tee featuring exclusive, custom-designed graphic festival artwork.</p>
+            <div class="merch-footer">
+              <span class="merch-price">₹399</span>
+              <button class="merch-btn portal-ripple-btn"
+                onclick="openMerchModal('Official Festival Normal T-Shirt', 399)">
+                <span class="btn-text">Order</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+         <div class="merch-info-panel reveal">
+         <div class="info-block deadline-block">
+          <span class="info-label">Important Deadline</span>
+          <p class="info-value highlight-text">Last Day to Buy: 11th Aug 2025</p>
+         </div>
+        
+         <div class="info-divider-v"></div>
+
+         <div class="info-block contact-block">
+          <span class="info-label">For any Queries, Contact</span>
+          <div class="contact-details">
+            <p class="contact-person">Vishwajeet <a href="tel:+919309106689" class="phone-link">+91 9309106689</a></p>
+            <p class="contact-person">Parav <a href="tel:+918080055574" class="phone-link">+91 8080055574</a></p>
+          </div>
+         </div>
+      </div>
+   </section>
+
+
+   <section id="donation">
+    <div class="section-wrap">
+      
+      <div class="reveal">
+        <div class="section-label">Support Us</div>
+        <h2 class="section-title">Contribute & Donate</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="donation-container reveal">
+        <div class="donation-info">
+          <h3>Help Us Make Bappa's Festival Grand</h3>
+          <p>Your generous contributions directly fund the Sthapana, daily Mahaprasad, cultural nights, and festival decorations. Every contribution counts toward bringing our campus community together.</p>
+          
+          <ul class="donation-benefits">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+              <span>Instant digital payment slip generated upon completion</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+              <span>Official acknowledgment of Name and Roll Number</span>
+            </li>
+          </ul>
+        </div>
+
+            <div class="donation-action-card">
+  <div class="donation-badge">Secure UPI Gateway</div>
+  
+  <form id="donation-form" class="portal-form">
+    <div class="input-group">
+      <label for="customer-name">Full Name</label>
+      <input type="text" id="customer-name" placeholder="Enter your full name" required autocomplete="off">
+    </div>
+    <div class="input-group">
+      <label for="customer-roll">IITG Roll Number</label>
+      <input type="text" id="customer-roll" placeholder="e.g., 230103001" required autocomplete="off">
+    </div>
+    <div class="input-group">
+      <label for="customer-email">Email Address</label>
+      <input type="email" id="customer-email" placeholder="your@email.com" required autocomplete="off">
+    </div>
+    <div class="input-group">
+      <label for="payment-amount">Contribution Amount (₹)</label>
+      <input type="number" id="payment-amount" placeholder="Minimum ₹1" min="1" required autocomplete="off">
+    </div>
+    <div class="donation-link-wrapper">
+      <button type="submit" id="donate-submit-btn" class="merch-btn donation-btn">
+        <span class="btn-text">Donate Online</span>
+      </button>
+    </div>
+  </form>
+</div>
+      </div>
+
+    </div>
+  </section>
+
+
+ <!-- ===================== ORGANIZING TEAM ===================== -->
+  <section id="team">
+    <div class="section-wrap">
+      <div class="reveal" style="text-align:center">
+        <div class="section-label">The People Behind everything</div>
+        <h2 class="section-title">Organizing Team</h2>
+        <div class="section-divider" style="margin:0 auto 2rem"></div>
+      </div>
+
+      <div class="team-core-row">
+        
+        <div class="team-card reveal">
+          <div class="team-img-wrapper"><img src="images/yash.jpg" alt="Yash"></div>
+          <div class="team-name">Yash</div>
+          <div class="team-role">President</div>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-img-wrapper"><img src="images/parav.jpg" alt="Parav"></div>
+          <div class="team-name">Parav</div>
+          <div class="team-role">Treasurer</div>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-img-wrapper"><img src="images/kalyani.jpg" alt="Kalyani"></div>
+          <div class="team-name">Kalyani</div>
+          <div class="team-role">Stage Decoration Manager</div>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-img-wrapper"><img src="images/jayant.jpg" alt="Jayant"></div>
+          <div class="team-name">Jayant</div>
+          <div class="team-role">Donation Organizer</div>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-img-wrapper"><img src="images/ashish.jpg" alt="Ashish"></div>
+          <div class="team-name">Ashish</div>
+          <div class="team-role">Mahaprasad Manager</div>
+        </div>
+
+      </div>
+
+      <div class="team-sub-grid">
+
+        <div class="team-card reveal">
+          <div class="team-img-pair">
+            <div class="team-img-wrapper"><img src="images/tanushree.jpg" alt="Tanushree"></div>
+            <div class="team-img-wrapper"><img src="images/shubhada.jpg" alt="Shubhada"></div>
+          </div>
+          <div class="team-name">Tanushree & Shubhada</div>
+          <div class="team-role">Cultural Heads</div>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-img-pair">
+            <div class="team-img-wrapper"><img src="images/mayuresh.jpg" alt="Mayuresh"></div>
+          </div>
+          <div class="team-name">Mayuresh</div>
+          <div class="team-role">Design Head</div>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-img-pair-fallback">
+            <div class="team-img-wrapper"><img src="images/tanishq.jpg" alt="Tanishq"></div>
+          </div>
+          <div class="team-name">Tanishq</div>
+          <div class="team-role">Photography & Social Media Head</div>
+        </div>
+
+        <div class="team-card reveal">
+          <div class="team-img-pair">
+            <div class="team-img-wrapper"><img src="images/prashant.jpg" alt="Prashant"></div>
+            <div class="team-img-wrapper"><img src="images/dipak.jpg" alt="Dipak"></div>
+          </div>
+          <div class="team-name">Prashant & Dipak</div>
+          <div class="team-role">Logistics Heads </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="social-hub">
+    <div class="section-wrap">
+      
+      <div class="reveal">
+        <div class="section-label">Connect With Us</div>
+        <h2 class="section-title">Official Channels</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="social-grid reveal">
+        
+        <a href="https://www.instagram.com/iitg_shivjayanti?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="social-card-link">
+          <div class="social-card">
+            <div class="social-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </div>
+            <div class="social-meta">
+              <h3>Instagram</h3>
+              <p>@iitg_ganeshotsav</p>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://youtube.com/@iitgganeshotsav?si=JblxiRfGO5_jpyTj" target="_blank" rel="noopener noreferrer" class="social-card-link">
+          <div class="social-card">
+            <div class="social-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+              </svg>
+            </div>
+            <div class="social-meta">
+              <h3>YouTube</h3>
+              <p>Festival Media Hub</p>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://drive.google.com/drive/folders/1_ZDVLpp1fndlM4YCj9DbuarQsBtt-Jqr?usp=share_link" target="_blank" rel="noopener noreferrer" class="social-card-link">
+          <div class="social-card">
+            <div class="social-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+                <path d="M22 14L15 2H9L16 14H22Z"></path>
+                <path d="M9 2L2 14L5 19L12 7L9 2Z"></path>
+                <path d="M12 7L5 19H19L22 14L12 7Z"></path>
+              </svg>
+            </div>
+            <div class="social-meta">
+              <h3>Google Drive</h3>
+              <p>2025 Celebration Data</p>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+  <footer id="footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">Ganeshotsav</div>
+        <div class="footer-sub">IIT Guwahati · 2025</div>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#merch">Merch</a></li>
+      </ul>
+      <div class="footer-copy">© 2025 Ganeshotsav IITG. All rights reserved.
+<a href="admin.html" style="color:rgba(192, 136, 7, 0.08);font-size:2.1rem;margin-left:1rem;text-decoration:none;" 
+   onmouseover="this.style.color='rgba(255,107,26,0.4)'" 
+   onmouseout="this.style.color='rgba(255,255,255,0.08)'">
+  ⚙
+</a></div>
+    </div>
+  </footer>
+
+  
+
+
+  <!-- ===================== MERCH ORDER MODAL ===================== -->
+  <div id="merch-modal" class="modal-overlay" onclick="closeMerchModal(event)">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeMerchModal()">&times;</button>
+      <div class="modal-header">
+        <div class="modal-label">Festival Merch</div>
+        <h2 class="modal-title" id="modal-item-name">Item Name</h2>
+        <div class="modal-price" id="modal-item-price">₹0</div>
+      </div>
+      <form id="merch-form" class="portal-form">
+        <div class="input-group">
+          <label for="merch-name">Full Name</label>
+          <input type="text" id="merch-name" placeholder="Enter your full name" required autocomplete="off">
+        </div>
+        <div class="input-group">
+          <label for="merch-roll">IITG Roll Number</label>
+          <input type="text" id="merch-roll" placeholder="e.g., 230103001" required autocomplete="off">
+        </div>
+        <div class="input-group">
+          <label for="merch-email">Email Address</label>
+          <input type="email" id="merch-email" placeholder="your@email.com" required autocomplete="off">
+        </div>
+        <!-- Combo toggle -->
+<div class="input-group" style="display:flex;align-items:center;gap:0.8rem;">
+  <input type="checkbox" id="merch-combo-toggle"
+         style="width:18px;height:18px;accent-color:#FF6B1A;cursor:pointer"
+         onchange="toggleCombo(this)">
+  <label for="merch-combo-toggle"
+         style="text-transform:none;font-size:0.88rem;letter-spacing:0;cursor:pointer;color:#f5ede0">
+    Add the other T-Shirt too
+    
+  </label>
+</div>
+
+<!-- Single item size -->
+<div class="input-group" id="merch-size-group">
+  <label for="merch-size">T-Shirt Size</label>
+  <select id="merch-size">
+    <option value="" disabled selected>Select size</option>
+    <option value="S">S</option>
+    <option value="M">M</option>
+    <option value="L">L</option>
+    <option value="XL">XL</option>
+    <option value="XXL">XXL</option>
+  </select>
+</div>
+
+<!-- Combo sizes — hidden until checkbox ticked -->
+<div id="merch-combo-group" style="display:none">
+  <div class="input-group">
+    <label for="merch-size-oversized">Oversized Tee Size</label>
+    <select id="merch-size-oversized">
+      <option value="" disabled selected>Select size</option>
+      <option value="S">S</option><option value="M">M</option>
+      <option value="L">L</option><option value="XL">XL</option>
+      <option value="XXL">XXL</option>
+    </select>
+  </div>
+  <div class="input-group">
+    <label for="merch-size-normal">Normal Tee Size</label>
+    <select id="merch-size-normal">
+      <option value="" disabled selected>Select size</option>
+      <option value="S">S</option><option value="M">M</option>
+      <option value="L">L</option><option value="XL">XL</option>
+      <option value="XXL">XXL</option>
+    </select>
+  </div>
+</div>
+        <button type="submit" class="merch-btn portal-ripple-btn" id="merch-submit-btn" style="width:100%;margin-top:0.5rem">
+          <span class="btn-text">Proceed to Pay</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================== SUCCESS MODAL ===================== -->
+  <div id="success-modal" class="modal-overlay" onclick="closeSuccessModal(event)">
+    <div class="modal-card" style="text-align:center;max-width:420px">
+      <div class="success-icon">🙏</div>
+      <h2 class="modal-title" style="margin:1rem 0 0.5rem">Payment Successful!</h2>
+      <p id="success-message" style="color:var(--text-muted,rgba(245,237,224,0.55));font-size:0.9rem;line-height:1.7;margin-bottom:1.5rem"></p>
+      <button class="merch-btn portal-ripple-btn" onclick="closeSuccessModal()" style="width:100%">
+        <span class="btn-text">Done</span>
+      </button>
+    </div>
+  </div>
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/payment.js"></script>
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</body>
+</html>
