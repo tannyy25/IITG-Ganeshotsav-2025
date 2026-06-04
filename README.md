@@ -22,7 +22,7 @@
 
 ## 📸 Preview
 
-> *(Add screenshots here after deployment)*
+>
 
 | Hero Section | Merch Order | Admin Dashboard |
 |---|---|---|
@@ -154,18 +154,7 @@ Shows in Admin Dashboard
 | GET | `/api/transactions` | JWT | All transactions |
 | GET | `/api/transactions/stats` | JWT | Revenue stats |
 
----
 
-## 📱 Screenshots
-
-> Add your screenshots to the `images/` folder and update the paths above.
-
-**To take screenshots:**
-1. Open site in Chrome
-2. Press `Cmd+Shift+4` (Mac) to screenshot
-3. Save as `preview-hero.png`, `preview-merch.png`, `preview-admin.png` in `images/`
-
----
 
 <div align="center">
 
