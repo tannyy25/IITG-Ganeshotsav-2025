@@ -24,7 +24,7 @@
 
 >
 
-| Hero Section | Merch Order | Admin Dashboard |
+| Hero Section | Admin Dashboard | Merch Order |
 |---|---|---|
 | ![Hero](images/preview-hero.png) | ![Merch](images/preview-merch.png) | ![Admin](images/preview-admin.png) |
 
