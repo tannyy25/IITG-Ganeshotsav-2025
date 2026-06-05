@@ -141,7 +141,7 @@
         <!-- Your existing events-grid ends right here -->
       </div>
 
-      <!-- ===================== SCHEDULE LOGISTICS FOOTER ===================== -->
+      <!--   SCHEDULE LOGISTICS FOOTER   -->
       <div class="schedule-logistics-bar reveal">
         
         <!-- Venue Location Block -->
@@ -314,7 +314,7 @@
   
   
 
- <!-- ===================== MERCHANDISE SECTION ===================== -->
+ <!--   MERCHANDISE SECTION   -->
   <section id="merch">
     <div class="section-wrap">
       
@@ -339,7 +339,7 @@
             <div class="merch-footer">
               <span class="merch-price">₹499</span>
               <button class="merch-btn portal-ripple-btn"
-                onclick="openMerchModal('Official Festival Oversized T-Shirt', 499)">
+                onclick="openMerchModal('oversized')">
                 <span class="btn-text">Order</span>
               </button>
             </div>
@@ -356,7 +356,7 @@
             <div class="merch-footer">
               <span class="merch-price">₹399</span>
               <button class="merch-btn portal-ripple-btn"
-                onclick="openMerchModal('Official Festival Normal T-Shirt', 399)">
+                onclick="openMerchModal('normal')">
                 <span class="btn-text">Order</span>
               </button>
             </div>
@@ -442,7 +442,7 @@
   </section>
 
 
- <!-- ===================== ORGANIZING TEAM ===================== -->
+ <!--   ORGANIZING TEAM   -->
   <section id="team">
     <div class="section-wrap">
       <div class="reveal" style="text-align:center">
@@ -612,14 +612,13 @@
   
 
 
-  <!-- ===================== MERCH ORDER MODAL ===================== -->
+  <!--   MERCH ORDER MODAL   -->
   <div id="merch-modal" class="modal-overlay" onclick="closeMerchModal(event)">
-    <div class="modal-card">
+    <div class="modal-card" style="max-width:520px;max-height:90vh;overflow-y:auto">
       <button class="modal-close" onclick="closeMerchModal()">&times;</button>
       <div class="modal-header">
         <div class="modal-label">Festival Merch</div>
         <h2 class="modal-title" id="modal-item-name">Item Name</h2>
-        <div class="modal-price" id="modal-item-price">₹0</div>
       </div>
       <form id="merch-form" class="portal-form">
         <div class="input-group">
@@ -634,60 +633,41 @@
           <label for="merch-email">Email Address</label>
           <input type="email" id="merch-email" placeholder="your@email.com" required autocomplete="off">
         </div>
+
+        <!-- Primary item sizes -->
+        <div id="primary-item-section">
+          <div class="qty-section-label" id="primary-item-label">Normal T-Shirt — ₹399 each</div>
+          <div class="qty-grid" id="primary-qty-grid"></div>
+        </div>
+
         <!-- Combo toggle -->
-<div class="input-group" style="display:flex;align-items:center;gap:0.8rem;">
-  <input type="checkbox" id="merch-combo-toggle"
-         style="width:18px;height:18px;accent-color:#FF6B1A;cursor:pointer"
-         onchange="toggleCombo(this)">
-  <label for="merch-combo-toggle"
-         style="text-transform:none;font-size:0.88rem;letter-spacing:0;cursor:pointer;color:#f5ede0">
-    Add the other T-Shirt too
-    
-  </label>
-</div>
+        <div class="input-group" style="display:flex;align-items:center;gap:0.8rem;margin-top:1.2rem">
+          <input type="checkbox" id="merch-combo-toggle" onchange="toggleCombo(this)">
+          <label for="merch-combo-toggle" style="text-transform:none;font-size:0.88rem;letter-spacing:0;cursor:pointer;color:#f5ede0">
+            Add <span id="other-item-label">the other T-Shirt</span> too
+          </label>
+        </div>
 
-<!-- Single item size -->
-<div class="input-group" id="merch-size-group">
-  <label for="merch-size">T-Shirt Size</label>
-  <select id="merch-size">
-    <option value="" disabled selected>Select size</option>
-    <option value="S">S</option>
-    <option value="M">M</option>
-    <option value="L">L</option>
-    <option value="XL">XL</option>
-    <option value="XXL">XXL</option>
-  </select>
-</div>
+        <!-- Secondary item sizes -->
+        <div id="secondary-item-section" style="display:none;margin-top:0.5rem">
+          <div class="qty-section-label" id="secondary-item-label">Oversized T-Shirt — ₹499 each</div>
+          <div class="qty-grid" id="secondary-qty-grid"></div>
+        </div>
 
-<!-- Combo sizes — hidden until checkbox ticked -->
-<div id="merch-combo-group" style="display:none">
-  <div class="input-group">
-    <label for="merch-size-oversized">Oversized Tee Size</label>
-    <select id="merch-size-oversized">
-      <option value="" disabled selected>Select size</option>
-      <option value="S">S</option><option value="M">M</option>
-      <option value="L">L</option><option value="XL">XL</option>
-      <option value="XXL">XXL</option>
-    </select>
-  </div>
-  <div class="input-group">
-    <label for="merch-size-normal">Normal Tee Size</label>
-    <select id="merch-size-normal">
-      <option value="" disabled selected>Select size</option>
-      <option value="S">S</option><option value="M">M</option>
-      <option value="L">L</option><option value="XL">XL</option>
-      <option value="XXL">XXL</option>
-    </select>
-  </div>
-</div>
-        <button type="submit" class="merch-btn portal-ripple-btn" id="merch-submit-btn" style="width:100%;margin-top:0.5rem">
+        <!-- Live total -->
+        <div class="order-total-bar">
+          <span>Total</span>
+          <span id="order-total-display">₹0</span>
+        </div>
+
+        <button type="submit" class="merch-btn portal-ripple-btn" id="merch-submit-btn" style="width:100%;margin-top:0.8rem">
           <span class="btn-text">Proceed to Pay</span>
         </button>
       </form>
     </div>
   </div>
 
-  <!-- ===================== SUCCESS MODAL ===================== -->
+  <!--   SUCCESS MODAL   -->
   <div id="success-modal" class="modal-overlay" onclick="closeSuccessModal(event)">
     <div class="modal-card" style="text-align:center;max-width:420px">
       <div class="success-icon">🙏</div>

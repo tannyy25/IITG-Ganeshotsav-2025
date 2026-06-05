@@ -1,6 +1,3 @@
-// ============================================
-//  GANESHOTSAV IITG — LIQUID METABALL CANVAS
-// ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
   initNavScroll();
@@ -99,7 +96,7 @@ function initLiquidInverseCanvas() {
   
   // Dynamic scaling variables to allow clean evaporation
   let currentRadius = 0;
-  const TARGET_RADIUS = 630; // Your upscaled 1.75x maximum size
+  const TARGET_RADIUS = 630; 
 
   visualArea.addEventListener('mouseenter', () => { 
     isOver = true; 
@@ -189,7 +186,7 @@ function initLiquidInverseCanvas() {
       trail.pop();
     }
 
-    // --- MAIN RENDER PIPELINE STAGES ---
+    //   MAIN RENDER PIPELINE STAGES  
 
     // STAGE 1: Draw foreground cutout flat on backdrop
     ctx.globalCompositeOperation = 'source-over';
@@ -253,7 +250,7 @@ function initAlternatingGallery() {
     rows.forEach(row => {
       const rect = row.getBoundingClientRect();
       
-      // Check if the row is currently passing through the viewport
+    
       if (rect.top < windowHeight && rect.bottom > 0) {
         const strip = row.querySelector('.moment-strip');
         if (!strip) return;
@@ -261,8 +258,7 @@ function initAlternatingGallery() {
         const totalStripWidth = strip.offsetWidth;
         const viewportWidth = window.innerWidth;
         
-        // FIX: Explicitly factor in the 4rem left/right padding (approx 128px globally)
-        // to ensure the hidden boundary threshold is calculated completely.
+      
         const paddingBuffer = 130; 
         const hiddenWidth = (totalStripWidth - viewportWidth) + paddingBuffer;
 
@@ -275,22 +271,20 @@ function initAlternatingGallery() {
         const totalDuration = windowHeight + rect.height;
         const currentProgress = (windowHeight - rect.top) / totalDuration;
         
-        // EXTENSION FIX: We scale the multiplier range up slightly from 1.2 to 1.45.
-        // This shifts the scroll velocity higher, pushing the track further along
-        // and forcing the 6th image to completely enter the view frame earlier.
+        
         const maxTravelRange = hiddenWidth * 1.45;
         const movement = (currentProgress - 0.15) * maxTravelRange; 
 
-        // Clamp the final translation values safely to the true maximum hidden width
+        
         const finalTranslation = Math.max(0, Math.min(movement, hiddenWidth - paddingBuffer));
 
-        // DIRECTION STAGING ALIGNMENT
+      
         const direction = row.getAttribute('data-dir');
         if (direction === 'left') {
-          // Moves Right to Left (Brings image 6 completely into full view)
+          
           strip.style.transform = `translateX(${-finalTranslation}px)`;
         } else {
-          // Moves Left to Right in reverse
+          
           const startOffset = -(hiddenWidth - paddingBuffer);
           strip.style.transform = `translateX(${startOffset + finalTranslation}px)`;
         }
@@ -299,10 +293,9 @@ function initAlternatingGallery() {
   });
 }
 
-// Instantiate the runner loop once layout structures settle
 document.addEventListener('DOMContentLoaded', initAlternatingGallery);
 
-// STABLE JITTER-FREE MARQUEE SCROLL ENGINE
+
 function initAllMomentsMarquees() {
   const tracks = document.querySelectorAll('.moments-marquee-track');
   if (!tracks.length) return;
@@ -320,7 +313,7 @@ function initAllMomentsMarquees() {
   });
 
   // 2. SMOOTH VELOCITY INTERPOLATION
-  // Instead of violently rewriting CSS timings, we smoothly adjust a scale factor
+  
   let targetVelocity = 0;
   let currentVelocity = 0;
   let lastScrollY = window.scrollY;
@@ -345,8 +338,7 @@ function initAllMomentsMarquees() {
         const parentRow = track.closest('.moment-row-wrapper');
         const direction = parentRow ? parentRow.getAttribute('data-dir') : 'left';
         
-        // Push the track along its existing layout path by injecting a subtle transform offset.
-        // Adding a slight skewX gives it a fluid, organic movement profile.
+        
         const skewAngle = direction === 'left' ? currentVelocity * -1.5 : currentVelocity * 1.5;
         const pushTranslate = direction === 'left' ? currentVelocity * -25 : currentVelocity * 25;
         
@@ -360,33 +352,31 @@ function initAllMomentsMarquees() {
     requestAnimationFrame(smoothUpdateTick);
   }
 
-  // Run the loop at a locked 60 FPS
   requestAnimationFrame(smoothUpdateTick);
 }
 
-// Instantiate the engine once layout structures render safely
 document.addEventListener('DOMContentLoaded', initAllMomentsMarquees);
 
-// PRECISION SCHEDULE TO GALLERY ROUTER (NO HTML/CSS MODIFICATIONS)
+
 function initScheduleScrollTrigger() {
-  // Target your exact card elements from your HTML structure
+
   const scheduleCards = document.querySelectorAll('.events-grid .event-card');
   const galleryRows = document.querySelectorAll('.moment-row-wrapper');
 
   if (!scheduleCards.length) return;
 
   scheduleCards.forEach(card => {
-    // Add pointer cursor on hover to let users know it's clickable
+   
     card.style.cursor = 'pointer';
 
     card.addEventListener('click', () => {
-      // Find the exact title div inside the clicked card
+       
       const titleElement = card.querySelector('.event-title');
       if (!titleElement) return;
       
       let cardText = titleElement.textContent.trim().toLowerCase();
 
-      // Normalize names to match your gallery heading text tokens
+      
       if (cardText.includes('arrival')) {
         cardText = 'sthapana';
       } else if (cardText.includes('cultural')) {
@@ -399,7 +389,7 @@ function initScheduleScrollTrigger() {
         cardText = 'visarjan';
       }
 
-      // Scan through the gallery rows to look for the matching title string
+      
       let matchRow = null;
       galleryRows.forEach(row => {
         const rowTitle = row.querySelector('.moment-row-title');
@@ -410,7 +400,7 @@ function initScheduleScrollTrigger() {
 
       // Execute smooth, precise positioning glide down the page
       if (matchRow) {
-        const topGapOffset = 100; // Headroom spacing so your sticky navbar doesn't cover the row title
+        const topGapOffset = 100; 
         const elementTopPos = matchRow.getBoundingClientRect().top + window.scrollY;
         
         window.scrollTo({
@@ -422,7 +412,7 @@ function initScheduleScrollTrigger() {
   });
 }
 
-// Automatically bind listeners once the page components mount successfully
+
 document.addEventListener('DOMContentLoaded', initScheduleScrollTrigger);
 
 

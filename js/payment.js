@@ -1,64 +1,114 @@
 // ============================================
-//  GANESHOTSAV — PAYMENT & MODAL JS
-//  Dummy Razorpay flow — swap key_id when ready
+//  GANESHOTSAV — PAYMENT JS
+//  Multi-qty size selector + Razorpay
 // ============================================
 
 const API_BASE = 'http://127.0.0.1:5001/api';
-
-// When you get Razorpay account:
-// 1. Add to .env: RAZORPAY_KEY_ID=rzp_test_xxxxxxxx
-// 2. Change RAZORPAY_KEY_ID below to your real key
 const RAZORPAY_KEY_ID = 'rzp_test_Sx3PUYHGI7SXLb';
 
-let currentMerchItem = { name: '', amount: 0 };
+const SIZES = ['S', 'M', 'L', 'XL', 'XXL'];
+const PRICES = { normal: 399, oversized: 499 };
 
+const ITEMS = {
+  normal:    { label: 'Normal T-Shirt',    price: PRICES.normal,    other: 'oversized' },
+  oversized: { label: 'Oversized T-Shirt', price: PRICES.oversized, other: 'normal'    }
+};
 
-function toggleCombo(checkbox) {
-  const singleGroup = document.getElementById('merch-size-group');
-  const comboGroup  = document.getElementById('merch-combo-group');
-  const priceEl     = document.getElementById('modal-item-price');
+let currentItem = null;
+let primaryQty   = {};
+let secondaryQty = {};
 
-  if (checkbox.checked) {
-    singleGroup.style.display = 'none';
-    comboGroup.style.display  = 'block';
-    // Add ₹99 savings to price
-    const base = currentMerchItem.amount;
-    const otherItem = base === 499 ? 399 : 499;
-    currentMerchItem.comboAmount = base + otherItem ;
-    currentMerchItem.isCombo = true;
-    priceEl.textContent = `₹${currentMerchItem.comboAmount}`;
-  } else {
-    singleGroup.style.display = 'block';
-    comboGroup.style.display  = 'none';
-    currentMerchItem.isCombo = false;
-    priceEl.textContent = `₹${currentMerchItem.amount}`;
-  }
+function initQty() {
+  SIZES.forEach(s => { primaryQty[s] = 0; secondaryQty[s] = 0; });
 }
 
-// ============================================
-//  MERCH MODAL
-// ============================================
-function openMerchModal(itemName, amount, isCombo = false) {
-  currentMerchItem = { name: itemName, amount, isCombo };
-  document.getElementById('modal-item-name').textContent = itemName;
-  document.getElementById('modal-item-price').textContent = `₹${amount}`;
+// ── Open Modal ─────────────────────────────
+function openMerchModal(itemKey) {
+  currentItem = itemKey;
+  initQty();
+
+  const item  = ITEMS[itemKey];
+  const other = ITEMS[item.other];
+
+  document.getElementById('modal-item-name').textContent = item.label;
+  document.getElementById('primary-item-label').textContent = `${item.label} — ₹${item.price} each`;
+  buildQtyGrid('primary-qty-grid', 'primary', item.price);
+
+  document.getElementById('secondary-item-label').textContent = `${other.label} — ₹${other.price} each`;
+  document.getElementById('other-item-label').textContent = other.label;
+  buildQtyGrid('secondary-qty-grid', 'secondary', other.price);
+
+  document.getElementById('merch-combo-toggle').checked = false;
+  document.getElementById('secondary-item-section').style.display = 'none';
   document.getElementById('merch-form').reset();
-
-  const sizeGroup = document.getElementById('merch-size-group');
-  const comboGroup = document.getElementById('merch-combo-group');
-
-  if (isCombo) {
-    sizeGroup.style.display = 'none';
-    comboGroup.style.display = 'block';
-  } else {
-    sizeGroup.style.display = 'block';
-    comboGroup.style.display = 'none';
-  }
+  updateTotal();
 
   document.getElementById('merch-modal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
+// ── Build size rows ─────────────────────────
+function buildQtyGrid(gridId, type, price) {
+  const grid = document.getElementById(gridId);
+  grid.innerHTML = SIZES.map(size => `
+    <div class="qty-row">
+      <span class="qty-size-label">${size}</span>
+      <div class="qty-controls">
+        <button type="button" class="qty-btn" onclick="changeQty('${type}','${size}',-1)">−</button>
+        <span class="qty-value" id="qty-${type}-${size}">0</span>
+        <button type="button" class="qty-btn" onclick="changeQty('${type}','${size}',1)">+</button>
+      </div>
+      <span class="qty-subtotal" id="sub-${type}-${size}">—</span>
+    </div>
+  `).join('');
+}
+
+// ── Change quantity ─────────────────────────
+function changeQty(type, size, delta) {
+  if (type === 'primary') {
+    primaryQty[size] = Math.max(0, (primaryQty[size] || 0) + delta);
+    document.getElementById(`qty-primary-${size}`).textContent = primaryQty[size];
+    const price = ITEMS[currentItem].price;
+    const sub = document.getElementById(`sub-primary-${size}`);
+    sub.textContent = primaryQty[size] > 0 ? `₹${primaryQty[size] * price}` : '—';
+    sub.className = 'qty-subtotal' + (primaryQty[size] > 0 ? ' active' : '');
+  } else {
+    secondaryQty[size] = Math.max(0, (secondaryQty[size] || 0) + delta);
+    document.getElementById(`qty-secondary-${size}`).textContent = secondaryQty[size];
+    const price = ITEMS[ITEMS[currentItem].other].price;
+    const sub = document.getElementById(`sub-secondary-${size}`);
+    sub.textContent = secondaryQty[size] > 0 ? `₹${secondaryQty[size] * price}` : '—';
+    sub.className = 'qty-subtotal' + (secondaryQty[size] > 0 ? ' active' : '');
+  }
+  updateTotal();
+}
+
+// ── Update total ────────────────────────────
+function updateTotal() {
+  const primaryPrice   = ITEMS[currentItem].price;
+  const secondaryPrice = ITEMS[ITEMS[currentItem].other].price;
+  const total = SIZES.reduce((sum, s) =>
+    sum + (primaryQty[s] || 0) * primaryPrice + (secondaryQty[s] || 0) * secondaryPrice, 0);
+  document.getElementById('order-total-display').textContent = `₹${total}`;
+}
+
+// ── Toggle combo ────────────────────────────
+function toggleCombo(checkbox) {
+  const sec = document.getElementById('secondary-item-section');
+  sec.style.display = checkbox.checked ? 'block' : 'none';
+  if (!checkbox.checked) {
+    SIZES.forEach(s => {
+      secondaryQty[s] = 0;
+      const el = document.getElementById(`qty-secondary-${s}`);
+      if (el) el.textContent = '0';
+      const sub = document.getElementById(`sub-secondary-${s}`);
+      if (sub) { sub.textContent = '—'; sub.className = 'qty-subtotal'; }
+    });
+    updateTotal();
+  }
+}
+
+// ── Close modals ────────────────────────────
 function closeMerchModal(event) {
   if (event && event.target !== document.getElementById('merch-modal')) return;
   document.getElementById('merch-modal').classList.remove('open');
@@ -77,40 +127,37 @@ function showSuccess(message) {
   document.getElementById('success-message').textContent = message;
 }
 
-// ============================================
-//  DUMMY RAZORPAY (replace when you get key)
-// ============================================
-function launchRazorpay({ amount, name, email, description, onSuccess }) {
-
-   //── REAL Razorpay (uncomment when you have key) ──
-   const options = {
-     key: RAZORPAY_KEY_ID,
-     amount: amount * 100,       // Razorpay takes paise
-     currency: 'INR',
-     name: 'IITG Ganeshotsav',
-     description: description,
-     prefill: { name, email },
-     theme: { color: '#FF6B1A' },
-     handler: function(response) {
-       onSuccess(response.razorpay_payment_id);
-     }
-   };
-   const rzp = new Razorpay(options);
-   rzp.open();
-
-  /* ── DUMMY flow (remove when Razorpay is ready) ──
-  const confirmed = confirm(
-    `[DUMMY PAYMENT]\n\nItem: ${description}\nAmount: ₹${amount}\nName: ${name}\n\nClick OK to simulate successful payment.`
-  );
-  if (confirmed) {
-    const dummyPaymentId = 'DUMMY_' + Date.now();
-    onSuccess(dummyPaymentId);
-  }*/
+// ── Build order summary ─────────────────────
+function buildOrderSummary() {
+  const item  = ITEMS[currentItem];
+  const other = ITEMS[item.other];
+  let lines = [];
+  SIZES.forEach(s => {
+    if (primaryQty[s]   > 0) lines.push(`${item.label} ${s} x${primaryQty[s]}`);
+    if (secondaryQty[s] > 0) lines.push(`${other.label} ${s} x${secondaryQty[s]}`);
+  });
+  return lines.join(', ');
 }
 
-// ============================================
-//  MERCH FORM SUBMIT
-// ============================================
+// ── Razorpay ────────────────────────────────
+function launchRazorpay({ amount, name, email, description, onSuccess }) {
+  const options = {
+    key: RAZORPAY_KEY_ID,
+    amount: amount * 100,
+    currency: 'INR',
+    name: 'IITG Ganeshotsav',
+    description: description,
+    prefill: { name, email },
+    theme: { color: '#FF6B1A' },
+    handler: function(response) {
+      onSuccess(response.razorpay_payment_id);
+    }
+  };
+  const rzp = new Razorpay(options);
+  rzp.open();
+}
+
+// ── Form submit ─────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
 
   const merchForm = document.getElementById('merch-form');
@@ -118,24 +165,30 @@ document.addEventListener('DOMContentLoaded', () => {
     merchForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const name     = document.getElementById('merch-name').value.trim();
-      const roll     = document.getElementById('merch-roll').value.trim();
-      const email    = document.getElementById('merch-email').value.trim();
-      const { name: itemName, amount, isCombo, comboAmount } = currentMerchItem;
-const finalAmount = isCombo ? comboAmount : amount;
-const size = isCombo
-  ? `Oversized: ${document.getElementById('merch-size-oversized').value}, Normal: ${document.getElementById('merch-size-normal').value}`
-  : document.getElementById('merch-size').value;
+      const name  = document.getElementById('merch-name').value.trim();
+      const roll  = document.getElementById('merch-roll').value.trim();
+      const email = document.getElementById('merch-email').value.trim();
 
+      const primaryPrice   = ITEMS[currentItem].price;
+      const secondaryPrice = ITEMS[ITEMS[currentItem].other].price;
+      const total = SIZES.reduce((sum, s) =>
+        sum + (primaryQty[s] || 0) * primaryPrice + (secondaryQty[s] || 0) * secondaryPrice, 0);
+
+      if (total === 0) {
+        alert('Please select at least 1 item before proceeding.');
+        return;
+      }
+
+      const summary = buildOrderSummary();
       const submitBtn = document.getElementById('merch-submit-btn');
       submitBtn.classList.add('btn-loading');
       submitBtn.querySelector('.btn-text').textContent = 'Opening Payment...';
 
       launchRazorpay({
-        amount: finalAmount,
+        amount: total,
         name,
         email,
-        description: `${itemName} (Size: ${size})`,
+        description: summary,
         onSuccess: async (paymentId) => {
           submitBtn.querySelector('.btn-text').textContent = 'Saving...';
           try {
@@ -147,18 +200,18 @@ const size = isCombo
                 rollNumber: roll,
                 email,
                 type: 'ORDER',
-                itemDetails: `${itemName} | Size: ${size} | Payment ID: ${paymentId}`,
-                amount: finalAmount
+                itemDetails: `${summary} | Payment ID: ${paymentId}`,
+                amount: total
               })
             });
             const data = await res.json();
             if (data.success) {
-              showSuccess(`Your order for ${itemName} (Size: ${size}) is confirmed! A receipt has been sent to ${email}.Check your spam/junk folder if you don't see it. 🙏`);
+              showSuccess(`Your order is confirmed! 🙏\n\n${summary}\n\nReceipt sent to ${email}. Check spam/junk if not in inbox.`);
             } else {
-              alert('Payment done but order save failed: ' + data.message);
+              alert('Payment done but save failed: ' + data.message);
             }
           } catch (err) {
-            alert('Payment done but could not reach server. Please contact organizers with Payment ID: ' + paymentId);
+            alert('Payment done but server unreachable. Payment ID: ' + paymentId);
           } finally {
             submitBtn.classList.remove('btn-loading');
             submitBtn.querySelector('.btn-text').textContent = 'Proceed to Pay';
@@ -171,9 +224,7 @@ const size = isCombo
     });
   }
 
-  // ============================================
-  //  DONATION FORM SUBMIT
-  // ============================================
+  // ── Donation form ───────────────────────
   const donationForm = document.getElementById('donation-form');
   if (donationForm) {
     donationForm.addEventListener('submit', async (e) => {
@@ -211,7 +262,6 @@ const size = isCombo
             const data = await res.json();
             if (data.success) {
               donationForm.reset();
-              // Show success inline
               const wrapper = document.querySelector('.donation-link-wrapper');
               wrapper.innerHTML = `
                 <div style="background:rgba(255,107,26,0.1);border:1px solid rgba(255,107,26,0.3);
@@ -224,7 +274,7 @@ const size = isCombo
               alert('Payment done but save failed: ' + data.message);
             }
           } catch (err) {
-            alert('Payment done but could not reach server. Payment ID: ' + paymentId);
+            alert('Payment done but server unreachable. Payment ID: ' + paymentId);
           } finally {
             submitBtn.classList.remove('btn-loading');
             submitBtn.querySelector('.btn-text').textContent = 'Donate Online';
@@ -237,7 +287,6 @@ const size = isCombo
     });
   }
 
-  // Close modal on Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       document.getElementById('merch-modal')?.classList.remove('open');

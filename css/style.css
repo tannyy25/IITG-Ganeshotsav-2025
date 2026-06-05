@@ -1,30 +1,26 @@
-/* ============================================
-   GANESHOTSAV IITG — MAIN STYLESHEET
-   ============================================ */
+
 
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
 
 :root {
-  /* ============================================
-     THEME: GOLDEN MAROON PALETTE
-     ============================================ */
-  --accent:        #D4A843;              /* Rich Gold for key highlights & CTAs */
-  --accent-glow:   rgba(212,168,67,0.35); /* Shimmering gold glow version */
-  --accent-dim:    rgba(212,168,67,0.12);  /* Subtle gold tint fill */
+  /* THEME: GOLDEN MAROON PALETTE */
+  --accent:        #D4A843;              
+  --accent-glow:   rgba(212,168,67,0.35); 
+  --accent-dim:    rgba(212,168,67,0.12);  
   
-  /* Background Layers (Deep Maroon with golden/warm undertones) */
-  --bg:            #2D0B0E;              /* Primary Base: Deep Midnight Maroon */
-  --bg2:           #1F0507;              /* Secondary Base: Darker Burnished Maroon */
   
-  /* Typography Colors */
-  --text:          #FDF8F0;              /* Bright Cream White for readability */
-  --text-muted:    rgba(253,248,240,0.65);/* Soft Muted Cream */
-  --text-dim:      rgba(253,248,240,0.25);/* Faded structural text */
+  --bg:            #2D0B0E;              
+  --bg2:           #1F0507;              
   
-  /* Secondary Accent */
-  --gold:          #E6C273;              /* Bright Champany Gold for serif italic highlights */
   
-  /* Fonts unchanged */
+  --text:          #FDF8F0;              
+  --text-muted:    rgba(253,248,240,0.65);
+  --text-dim:      rgba(253,248,240,0.25);
+  
+  
+  --gold:          #E6C273;              
+  
+  
   --font-display:  'Bebas Neue', sans-serif;
   --font-serif:    'Cormorant Garamond', Georgia, serif;
   --font-body:     'DM Sans', sans-serif;
@@ -42,9 +38,7 @@ body {
 img { display:block; max-width:100%; }
 a { color: inherit; text-decoration: none; }
 
-/* ============================================
-   NAV
-   ============================================ */
+/* NAV */
 #navbar {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -95,9 +89,7 @@ a { color: inherit; text-decoration: none; }
 }
 .nav-cta:hover { background: var(--accent); color: #000; }
 
-/* ============================================
-   HERO STYLE RESTRUCTURE (FLAWLESS CANVAS COVER)
-   ============================================ */
+/* HERO STYLE RESTRUCTURE (FLAWLESS CANVAS COVER) */
 #hero {
   position: relative;
   width: 100%;
@@ -110,17 +102,17 @@ a { color: inherit; text-decoration: none; }
   position: relative;
   width: 100%;
   height: 85vh;
-  background: var(--bg); /* Changed from explicit hex to dynamic theme variable */
+  background: var(--bg); 
   overflow: hidden;
 }
 
 .hero-solid-bg {
   position: absolute;
   inset: 0;
-  background: var(--bg); /* Changed to use the primary Deep Maroon variable */
+  background: var(--bg); 
   z-index: 1;
 }
-/* Force the canvas to scale elegantly like an image element */
+
 #hero-canvas {
   position: absolute;
   top: 0; left: 0;
@@ -163,16 +155,16 @@ a { color: inherit; text-decoration: none; }
   100% { transform: translateX(100%); opacity:0; }
 }
 
-/* Centered content wrapper placed beneath the visual area */
-/* ============================================
+
+/*  
    HERO TEXT BLOCK ADJUSTMENT (SHIFTED UPWARD)
-   ============================================ */
+     */
 .hero-text-block {
   position: relative;
   width: 100%;
   max-width: 800px;
-  margin: -2rem auto 0; /* Changed margin-top to negative to pull the block up */
-  padding: 0 2rem 5rem; /* Reduced top padding to 0 */
+  margin: -2rem auto 0; 
+  padding: 0 2rem 5rem; 
   text-align: center;
   z-index: 5;
 }
@@ -239,7 +231,7 @@ a { color: inherit; text-decoration: none; }
   transform: translateY(-2px);
 }
 
-/* Scroll UI Indicator */
+
 .scroll-hint {
   position: absolute;
   bottom: 2rem;
@@ -270,9 +262,9 @@ a { color: inherit; text-decoration: none; }
   100% { transform: scaleY(0); transform-origin: bottom; }
 }
 
-/* ============================================
+/*  
    STATS STRIP
-   ============================================ */
+     */
 #stats {
   border-top: 1px solid rgba(255,107,26,0.1);
   border-bottom: 1px solid rgba(255,107,26,0.1);
@@ -306,9 +298,9 @@ a { color: inherit; text-decoration: none; }
   margin-top: 0.4rem;
 }
 
-/* ============================================
+/*  
    SHARED SECTION
-   ============================================ */
+     */
 .section-wrap {
   padding: 8rem 3rem;
   max-width: 1400px;
@@ -340,26 +332,27 @@ a { color: inherit; text-decoration: none; }
 }
 .reveal.visible { opacity:1; transform:translateY(0); }
 
-/* ============================================
+/*  
    ABOUT SECTION — ASPECT RATIO REPAIR
-   ============================================ */
+     */
+
 #about .section-wrap {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 6rem;
-  align-items: center; /* Keeps text box vertically centered with the image */
+  align-items: center; 
 }
 
 .about-visual {
   position: relative;
   width: 100%;
-  height: auto; /* REMOVED fixed 500px to unlock native proportions */
+  height: auto; 
 }
 
 .about-img-main {
   width: 100%;
-  height: auto; /* Forces browser layout engine to render perfect aspect ratio */
-  object-fit: contain; /* Guarantees no squishing or cropping on the edges */
+  height: auto; 
+  object-fit: contain; 
   border-radius: 4px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
 }
@@ -389,9 +382,9 @@ a { color: inherit; text-decoration: none; }
   font-weight: 500;
 }
 
-/* ============================================
+/*  
    EVENTS
-   ============================================ */
+     */
 .events-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -424,9 +417,9 @@ a { color: inherit; text-decoration: none; }
 .event-title { font-family: var(--font-serif); font-size: 1.3rem; color: var(--text); margin-bottom: 0.8rem; }
 .event-desc { font-size: 0.82rem; line-height: 1.7; color: var(--text-muted); }
 
-/* ============================================
+/*  
    SCHEDULE LOGISTICS FOOTER STYLES
-   ============================================ */
+     */
 .schedule-logistics-bar {
   display: flex;
   align-items: center;
@@ -441,12 +434,12 @@ a { color: inherit; text-decoration: none; }
   gap: 2rem;
 }
 
-/* Venue Layout Panel */
+
 .logistics-venue {
   display: flex;
   align-items: center;
   gap: 1.2rem;
-  border-left: 3px solid var(--accent, #FF6B1A); /* Sleek vertical accent separator line */
+  border-left: 3px solid var(--accent, #FF6B1A); 
   padding-left: 1.5rem;
 }
 
@@ -464,16 +457,16 @@ a { color: inherit; text-decoration: none; }
 }
 
 .events-grid .event-date {
-  /* COLOR FIX: Changes 'AUG 27', 'AUG 28', etc. to your premium theme gold-yellow */
+  
   color: #D4A843; 
   
-  /* Keeps the text fully visible and crisp instead of dimmed out */
+  
   opacity: 1; 
   
-  /* Adds a very subtle soft glow behind the text to match the dark canvas vibe */
+  
   text-shadow: 0 0 10px rgba(212, 168, 67, 0.15); 
   
-  /* Optional transition ease if you want them to shift smoothly on hover states */
+  
   transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
@@ -483,18 +476,18 @@ a { color: inherit; text-decoration: none; }
   font-weight: 400;
 }
 
-/* Timings Group Layout */
+
 .logistics-timings {
   display: flex;
   align-items: center;
   gap: 1.5rem;
 }
 
-/* Rounded Capsule Badges (Matches images a4da80/a4da65) */
+
 .aarti-badge {
-  background: #9E322D; /* Premium brick-red base fill texture from your screen samples */
+  background: #9E322D; 
   padding: 0.8rem 1.6rem;
-  border-radius: 12px; /* Smooth rounded capsule look */
+  border-radius: 12px; 
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
@@ -519,7 +512,7 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.01em;
 }
 
-/* Responsive collapse rule for smaller displays */
+
 @media (max-width: 868px) {
   .schedule-logistics-bar {
     flex-direction: column;
@@ -542,9 +535,9 @@ a { color: inherit; text-decoration: none; }
     box-sizing: border-box;
   }
 }
-/* ============================================
+/*  
    INFINITE SEAMLESS IMAGES MARQUEE (OVERLAP FIX)
-   ============================================ */
+     */
 #gallery {
   background: var(--bg);
   padding: 8rem 0;
@@ -584,28 +577,26 @@ a { color: inherit; text-decoration: none; }
   display: flex;
 }
 
-/* Main animated track wrapper */
+
 .moment-strip {
   display: flex;
   width: max-content;
   will-change: transform;
 }
 
-/* Contains exactly 6 images */
+
 .marquee-group {
   display: flex;
   align-items: center;
   gap: 2rem;
-  padding-right: 2rem; /* Exact offset matching the gap for a seamless loop */
+  padding-right: 2rem; 
 }
 
-/* FIX: Explicit layout bounds for structural scaling */
+
 .moment-card {
   flex: 0 0 auto;
-  height: 260px; /* Locked premium height */
+  height: 260px; 
   
-  /* OVERLAP FIX: Forces a standard 3:2 landscape aspect-ratio box layout placeholder instantly.
-     This stops the browser from collapsing the container to 0px before images download! */
   aspect-ratio: 3 / 2; 
   
   border-radius: 4px;
@@ -618,8 +609,6 @@ a { color: inherit; text-decoration: none; }
   width: 100%;
   height: 100%;
   
-  /* OVERLAP FIX: Using 'cover' ensures your horizontal landscape images scale to perfectly fill 
-     the 3:2 layout block instantly without any edge distortion or overlay glitching */
   object-fit: cover; 
   
   display: block;
@@ -630,7 +619,7 @@ a { color: inherit; text-decoration: none; }
   transform: scale(1.04);
 }
 
-/* --- HARDWARE ACCELERATED ANIMATION LOOPS --- */
+
 @keyframes scrollMarqueeLeft {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -649,18 +638,13 @@ a { color: inherit; text-decoration: none; }
   animation: scrollMarqueeRight 28s linear infinite;
 }
 
-/* Mobile responsive scaling */
+
 @media (max-width: 768px) {
   .moment-card { height: 180px; }
   .marquee-group { gap: 1.2rem; padding-right: 1.2rem; }
   .moment-row-title { font-size: 1.4rem; padding: 0 2rem 1rem; }
 }
-/* ============================================
-   MERCHANDISE SECTION (GAP CLOSURE REPAIR)
-   ============================================ */
-/* ============================================
-   GAP CLOSURE FIX: MERCHANDISE TO DONATION
-   ============================================ */
+
 #merch {
   background: var(--bg);
   /* GAP FIX: Reduced the bottom padding from 8rem down to 2rem 
@@ -671,18 +655,18 @@ a { color: inherit; text-decoration: none; }
 
 
 
-/* Ensure the grid wrapper sits cleanly below your title section margins */
+
 .merch-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 3rem;
   max-width: 1100px; 
-  margin: 3rem auto 0; /* Tightened up the top margin spacing a bit as well */
+  margin: 3rem auto 0; 
   padding: 0 2rem;
 }
-/* ============================================
+/*  
    MERCHANDISE INFO & CONTACT PANEL
-   ============================================ */
+     */
 .merch-info-panel {
   display: flex;
   align-items: center;
@@ -726,13 +710,13 @@ a { color: inherit; text-decoration: none; }
   margin: 0;
 }
 
-/* Accent highlight matching the image focus tone */
+
 .highlight-text {
   color: #FFFFFF;
   text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
 }
 
-/* Vertical structural divider line */
+
 .info-divider-v {
   width: 1px;
   height: 60px;
@@ -766,7 +750,7 @@ a { color: inherit; text-decoration: none; }
   color: #FFFFFF;
 }
 
-/* Responsive collapse rules for smaller screens */
+
 @media (max-width: 868px) {
   .merch-info-panel {
     flex-direction: column;
@@ -777,7 +761,7 @@ a { color: inherit; text-decoration: none; }
   }
   
   .info-divider-v {
-    display: none; /* Hide vertical rule on mobile stack */
+    display: none; 
   }
   
   .contact-block {
@@ -810,20 +794,20 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 30px 50px rgba(0, 0, 0, 0.4);
 }
 
-/* FLUSH FIT FIX: Locks the box to a clean square aspect ratio matching the mockup images */
+
 .merch-image-wrapper {
   width: 100%;
-  aspect-ratio: 1 / 1; /* Makes the box an exact square so the mockup fills it edge-to-edge */
+  aspect-ratio: 1 / 1; 
   background: #000000;
   overflow: hidden;
   position: relative;
 }
 
-/* Forces the mockup background to sit perfectly flush against the inner card edges */
+
 .merch-image-wrapper img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Spans the square asset flawlessly without stretching the t-shirt graphic */
+  object-fit: cover; 
   display: block;
   transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
@@ -832,7 +816,7 @@ a { color: inherit; text-decoration: none; }
   transform: scale(1.04);
 }
 
-/* Metadata content container wrapping text */
+
 .merch-meta {
   padding: 2.5rem;
   display: flex;
@@ -856,7 +840,7 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 2.5rem;
 }
 
-/* Align price tag and button cleanly across the bottom */
+
 .merch-footer {
   display: flex;
   align-items: center;
@@ -871,11 +855,11 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--font-display, sans-serif);
 }
 
-/* ============================================
+/*  
    JITTER-FREE PURE CSS CIRCLE EXPANSION RIPPLE
-   ============================================ */
+     */
 .merch-btn {
-  position: relative; /* Crucial: Sets structural anchor for the background layer */
+  position: relative; 
   background: transparent;
   color: #FFFFFF;
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -886,7 +870,7 @@ a { color: inherit; text-decoration: none; }
   text-transform: uppercase;
   border-radius: 3px;
   cursor: pointer;
-  overflow: hidden; /* Hides the circle when it expands past the button edges */
+  overflow: hidden; 
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -894,14 +878,14 @@ a { color: inherit; text-decoration: none; }
   transition: border-color 0.4s ease, color 0.4s ease;
 }
 
-/* Ensure the text label floats safely on top of the background layer */
+
 .merch-btn .btn-text {
   position: relative;
-  z-index: 3; /* Places text on top of the expanding background circle */
-  pointer-events: none; /* Prevents text elements from blocking mouse hovers */
+  z-index: 3; 
+  pointer-events: none; 
 }
 
-/* THE BACKGROUND LAYER: Generates a perfectly centered circle hidden at 0px scale */
+
 .merch-btn::before {
   content: '';
   position: absolute;
@@ -909,26 +893,26 @@ a { color: inherit; text-decoration: none; }
   left: 50%;
   width: 250px;
   height: 250px;
-  background: #D4A843; /* Matches your exact gold/yellow text hex code token */
-  border-radius: 50%; /* Perfect geometric circle profile */
-  transform: translate(-50%, -50%) scale(0); /* Hidden placeholder scale baseline */
+  background: #D4A843; 
+  border-radius: 50%; 
+  transform: translate(-50%, -50%) scale(0); 
   transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-  z-index: 2; /* Sits behind text layer but on top of button card canvas background */
+  z-index: 2; 
 }
 
-/* --- THE RIPPLE INTERACTION TRIGGER --- */
+
 
 .merch-btn:hover {
-  color: #000000;       /* Changes text to black ONLY when background turns gold */
-  border-color: #D4A843; /* Changes outline accent border cleanly */
+  color: #000000;       
+  border-color: #D4A843; 
 }
 
-/* Scales the background circle from 0 to 1 smoothly on hover */
+
 .merch-btn:hover::before {
   transform: translate(-50%, -50%) scale(1);
 }
 
-/* Mobile responsive adjustments */
+
 @media (max-width: 768px) {
   .merch-grid {
     grid-template-columns: 1fr; 
@@ -939,34 +923,26 @@ a { color: inherit; text-decoration: none; }
     padding: 2rem;
   }
 }
-/* ============================================
-   DONATION SECTION (GAP & RIPPLE COMPLETION FIX)
-   ============================================ */
-/* ============================================
-   GAP CLOSURE FIX: DONATION TO ORGANIZING TEAM
-   ============================================ */
+
 #donation {
   background: var(--bg);
-  /* GAP FIX: Reduced the bottom padding from 8rem down to 2rem 
-     to bring the Organizing Team section up closer */
   padding: 1rem 0 2rem 0; 
   width: 100%;
   margin-top: -2rem; 
 }
 
-/* If the Organizing Team section heading has its own container id (e.g., #team), 
-   we can also make sure its top padding is tight and neat */
+
 #team, .team-section {
-  /* Pulls the section up to balance the layout spacing perfectly */
+  
   padding-top: 1.5rem; 
 }
-/* Ensure the donation content layout container fits nicely under the pulled header */
+
 .donation-container {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   gap: 4rem;
   max-width: 1100px;
-  margin: 3rem auto 0; /* Tightened from 4rem to 3rem */
+  margin: 3rem auto 0; 
   padding: 3.5rem 4rem;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.04);
@@ -1011,7 +987,7 @@ a { color: inherit; text-decoration: none; }
   flex-shrink: 0;
 }
 
-/* Payment Action Box */
+
 .donation-action-card {
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.03);
@@ -1048,7 +1024,7 @@ a { color: inherit; text-decoration: none; }
   width: 100%;
 }
 
-/* FULL WIDTH CONFIGURATION FOR DONATE BUTTON */
+
 .donation-btn {
   width: 100%;
   padding: 1rem 0;
@@ -1076,8 +1052,7 @@ a { color: inherit; text-decoration: none; }
   pointer-events: none;
 }
 
-/* RIPPLE FIX: Increased width/height scaling limits to 600px 
-   so the circle expands to fill the wide button cleanly */
+
 .donation-btn::before {
   content: '';
   position: absolute;
@@ -1101,7 +1076,7 @@ a { color: inherit; text-decoration: none; }
   transform: translate(-50%, -50%) scale(1);
 }
 
-/* Responsive collapse rules */
+
 @media (max-width: 868px) {
   .donation-container {
     grid-template-columns: 1fr;
@@ -1111,9 +1086,9 @@ a { color: inherit; text-decoration: none; }
   }
 }
 
-/* ============================================
+/*  
    SPONSORS
-   ============================================ */
+     */
 #sponsors { text-align: center; }
 .sponsors-tier { margin-bottom: 3rem; }
 .tier-label { font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1.5rem; }
@@ -1124,9 +1099,9 @@ a { color: inherit; text-decoration: none; }
 }
 .sponsor-pill:hover { border-color: var(--accent); color: var(--text); }
 
-/* ============================================
+/*  
    FOOTER
-   ============================================ */
+     */
 #footer { border-top: 1px solid rgba(255,107,26,0.1); padding: 4rem 3rem; background: var(--bg2); }
 .footer-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
 .footer-logo { font-family: var(--font-display); font-size: 2rem; letter-spacing: 0.1em; color: var(--accent); }
@@ -1138,9 +1113,9 @@ a { color: inherit; text-decoration: none; }
 
 @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
 
-/* ============================================
+/*  
    RESPONSIVE
-   ============================================ */
+     */
 @media (max-width: 1024px) {
   .events-grid { grid-template-columns: repeat(3, 1fr); }
   .merch-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1157,15 +1132,15 @@ a { color: inherit; text-decoration: none; }
   .hero-visual-area { height: 60vh; }
 }
 
-/* ============================================
+/*  
    TEAM SECTION STYLES (BALANCED 4-COLUMN SUBGRID)
-   ============================================ */
+     */
 #team { 
   background: var(--bg); 
   padding-bottom: 10rem;
 }
 
-/* 5-Column Grid Layout for Top Individual Leads */
+
 .team-core-row {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -1174,7 +1149,7 @@ a { color: inherit; text-decoration: none; }
   width: 100%;
 }
 
-/* Balanced 4-Column Grid layout pushing everything into a clean second row */
+
 .team-sub-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1187,7 +1162,7 @@ a { color: inherit; text-decoration: none; }
   text-align: center;
 }
 
-/* Standard profile circle sizing */
+
 .team-img-wrapper {
   width: 120px;
   height: 120px;
@@ -1199,7 +1174,7 @@ a { color: inherit; text-decoration: none; }
   background: var(--bg2);
 }
 
-/* Pairs profile circle sizing setup placed inline */
+
 .team-img-pair {
   display: flex;
   justify-content: center;
@@ -1212,7 +1187,7 @@ a { color: inherit; text-decoration: none; }
   height: 105px;
 }
 
-/* Structural sizing box to keep solo cards perfectly aligned with side-by-side items */
+
 .team-single-pair-height {
   display: flex;
   justify-content: center;
@@ -1258,7 +1233,7 @@ a { color: inherit; text-decoration: none; }
   font-weight: 500;
 }
 
-/* Responsive breakdowns for mobile and tablet views */
+
 @media (max-width: 1100px) {
   .team-core-row {
     grid-template-columns: repeat(3, 1fr);
@@ -1280,9 +1255,9 @@ a { color: inherit; text-decoration: none; }
   }
 }
 
-/* ============================================
+/*  
    SCHEDULE POSTER STYLES
-   ============================================ */
+     */
 .schedule-poster-wrap {
   width: 100%;
   max-width: 1000px;
@@ -1309,7 +1284,7 @@ a { color: inherit; text-decoration: none; }
   height: auto;
   display: block;
   border-radius: 2px;
-  /* Maintains image crispness */
+  
   image-rendering: -webkit-optimize-contrast; 
 }
 
@@ -1319,14 +1294,13 @@ a { color: inherit; text-decoration: none; }
   }
 }
 
-/* ============================================
+/*  
    SOCIAL HUB CONTAINER (GAP CLOSURE OVERRIDE)
-   ============================================ */
+     */
 #social-hub {
   background: var(--bg);
   
-  /* GAP FIX: Drastically cut top padding to 0 and apply a negative top margin 
-     to actively drag the "Official Channels" heading up close to the team profiles */
+ 
   padding: 0 0 6rem 0; 
   margin-top: -4rem; 
   
@@ -1338,7 +1312,7 @@ a { color: inherit; text-decoration: none; }
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   max-width: 1100px;
-  margin: 2.5rem auto 0; /* Tightened from 4rem to 2.5rem to pull cards closer to title */
+  margin: 2.5rem auto 0; 
   padding: 0 2rem;
 }
 
@@ -1401,9 +1375,9 @@ a { color: inherit; text-decoration: none; }
 
 
 
-/* ============================================
+/*  
    DONATION INPUT FIELD STYLING
-   ============================================ */
+     */
 .portal-form {
   display: flex;
   flex-direction: column;
@@ -1438,21 +1412,21 @@ a { color: inherit; text-decoration: none; }
   transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
-/* Subtle gold highlight on focus */
+
 .input-group input:focus {
   border-color: #D4A843;
   background: rgba(255, 255, 255, 0.05);
 }
 
-/* Remove default inner arrows for number input fields */
+
 .input-group input::-webkit-outer-spin-button,
 .input-group input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-/* ============================================
+/*  
    MERCH MODAL + SUCCESS MODAL
-   ============================================ */
+     */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -1546,13 +1520,13 @@ a { color: inherit; text-decoration: none; }
   background: #1a0800;
 }
 
-/* Success modal */
+
 .success-icon {
   font-size: 3.5rem;
   margin-bottom: 0.5rem;
 }
 
-/* Loading state on button */
+
 .btn-loading {
   opacity: 0.7;
   pointer-events: none;
@@ -1566,4 +1540,105 @@ input[type="checkbox"] {
   height: 18px !important;
   accent-color: #FF6B1A !important;
   cursor: pointer !important;
+}
+/* ============================================
+   QTY SELECTOR MODAL
+   ============================================ */
+input[type="checkbox"] {
+  appearance: auto !important;
+  -webkit-appearance: checkbox !important;
+  width: 16px !important;
+  height: 16px !important;
+  accent-color: #FF6B1A !important;
+  cursor: pointer !important;
+  flex-shrink: 0 !important;
+}
+.qty-section-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent, #FF6B1A);
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255,107,26,0.15);
+}
+.qty-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.qty-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+}
+.qty-size-label {
+  font-size: 0.9rem;
+  color: #f5ede0;
+  font-weight: 500;
+  width: 40px;
+}
+.qty-controls {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(255,107,26,0.25);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.qty-btn {
+  background: rgba(255,107,26,0.08);
+  border: none;
+  color: #f5ede0;
+  width: 36px;
+  height: 36px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+}
+.qty-btn:hover { background: rgba(255,107,26,0.2); }
+.qty-value {
+  width: 40px;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #f5ede0;
+  font-weight: 600;
+  background: transparent;
+  border-left: 1px solid rgba(255,107,26,0.15);
+  border-right: 1px solid rgba(255,107,26,0.15);
+  height: 36px;
+  line-height: 36px;
+}
+.qty-subtotal {
+  font-size: 0.85rem;
+  color: rgba(245,237,224,0.4);
+  min-width: 55px;
+  text-align: right;
+}
+.qty-subtotal.active { color: var(--accent, #FF6B1A); font-weight: 600; }
+.order-total-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255,107,26,0.1);
+  border: 1px solid rgba(255,107,26,0.3);
+  border-radius: 6px;
+  padding: 1rem 1.2rem;
+  margin-top: 1.2rem;
+}
+.order-total-bar span:first-child {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245,237,224,0.6);
+}
+#order-total-display {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: var(--accent, #FF6B1A);
+  line-height: 1;
 }
