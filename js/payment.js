@@ -3,7 +3,7 @@
 //  Multi-qty size selector + Razorpay
 // ============================================
 
-const API_BASE = 'http://127.0.0.1:5001/api';
+const API_BASE = 'https://iitg-ganeshotsav-2025.onrender.com';
 const RAZORPAY_KEY_ID = 'rzp_test_Sx3PUYHGI7SXLb';
 
 const SIZES = ['S', 'M', 'L', 'XL', 'XXL'];
